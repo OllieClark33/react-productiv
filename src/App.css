@@ -1,38 +1,136 @@
-.App {
-  text-align: center;
+/* App.js */
+* {
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+    font-size: 16px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#app-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 1.6rem 1.6rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* APP HEADER */
+
+#header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 1.6rem;
 }
 
-.App-link {
-  color: #61dafb;
+.header-item {
+    margin: 0 auto 0.625rem auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#logo {
+    height: 4rem;
+    width: 4rem;
+}
+
+#title {
+    font-weight: 700;
+    font-size: 3.1rem;
+    letter-spacing: -0.025em;
+    line-height: 1;
+}
+
+#header-desc {
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+/* APP FOOTER */
+
+#footer {
+    max-width: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+#tag {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    margin-bottom: 0.625rem;
+}
+
+#socials-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.social-links {
+    color: black;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+    html {
+        font-size: 22px;
+    }
+}
+ 
+/* Larger devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    html {
+        font-size: 16px;
+    }
+
+    #header {
+        margin-left: 3rem;
+        margin-bottom: 6rem;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .header-item {
+        margin: 0.625rem 0.5rem;
+    }
+
+    #logo {
+        height: 2.5rem;
+        width: 2.5rem;
+    }
+
+    #title {
+        font-size: 1.55rem;
+    }
+
+    #footer {
+        max-width: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 1.6rem 4.6rem;
+    }
+
+    footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #tag {
+        margin-bottom: 0;
+        font-size: 1.25rem;
+    }
+    
+    #socials-container {
+        min-width: 150px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 1.25rem;
+    }
+
 }

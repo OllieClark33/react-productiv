@@ -1,0 +1,3 @@
+// Edit functionality
+// Draggable/Snap to grid components
+// "Completed X/Y tasks today" / "You have X tasks remaining"

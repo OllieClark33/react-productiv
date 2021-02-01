@@ -1,0 +1,16 @@
+/* List.js */
+
+#list-container {
+    margin: 0 auto 1.25rem auto;
+    width: 19rem;
+    overflow-y: auto;
+}
+
+#list-container #todo-list {
+    padding: 0;
+}
+
+
+.list-item {
+    list-style: none;
+}

@@ -37,6 +37,17 @@
 #submit-button {
     flex: 1;
     border-radius: 0;
+    border: none;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn:active {
+    outline: none;
+    box-shadow: none;
 }
 
 /* Larger devices (desktops, 992px and up) */

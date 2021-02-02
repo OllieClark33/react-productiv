@@ -15,6 +15,9 @@ class AddItem extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        if (this.inputRef.current.value === "") {
+            return;
+        }
         this.setState({ newTask: this.inputRef.current.value }, function() {
             this.inputRef.current.value = "";
             this.props.addItem(this.state.newTask)

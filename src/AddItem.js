@@ -14,14 +14,17 @@ class AddItem extends Component {
     }
 
     handleSubmit(e) {
+        let wsRegex = new RegExp(/\S+/, "g")
+        let input = this.inputRef.current.value
         e.preventDefault();
-        if (this.inputRef.current.value === "") {
+        if (wsRegex.test(input)) {
+            this.setState({ newTask: input }, function() {
+                this.inputRef.current.value = "";
+                this.props.addItem(this.state.newTask)
+            })
             return;
         }
-        this.setState({ newTask: this.inputRef.current.value }, function() {
-            this.inputRef.current.value = "";
-            this.props.addItem(this.state.newTask)
-        })
+        return; 
     }
 
     render() {

@@ -11,7 +11,7 @@ class List extends Component {
         return (
             <div id="list-container">
                 <ul id="todo-list">
-                    {tasks.map((task) => (<li className="list-item" key={uuidv4()}> <ListItem removeItem={removeItem.bind(this)} task={task}/> </li>))}
+                    {tasks.map((task) => (<li className="list-item" key={uuidv4()}> <ListItem removeItem={removeItem.bind(this)} task={task} /> </li>))}
                 </ul>
             </div>
         )

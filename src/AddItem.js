@@ -7,7 +7,7 @@ class AddItem extends Component {
     constructor(props) {
         super(props)
         this.state = { 
-            newTask: "" 
+            newTask: {} 
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.inputRef = React.createRef();
@@ -18,7 +18,7 @@ class AddItem extends Component {
         let input = this.inputRef.current.value
         e.preventDefault();
         if (wsRegex.test(input)) {
-            this.setState({ newTask: input }, function() {
+            this.setState({ newTask: { [input]: false } }, function() {
                 this.inputRef.current.value = "";
                 this.props.addItem(this.state.newTask)
             })

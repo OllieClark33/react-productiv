@@ -10,24 +10,39 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: []
+      todos: [] // DATA should change to: todos: [{task: Take Shower, completed: false, id: XXX }]
     }
     this.handleAddItem = this.handleAddItem.bind(this);
     this.handleRemoveItem = this.handleRemoveItem.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleEditItem = this.handleEditItem.bind(this)
   }
 
   handleAddItem(state) {
     this.setState(({todos}) => (
-      { todos: [...todos, state] }
+      { todos: [...todos, state ]}
     )); 
   }
 
-  handleRemoveItem(s) {
+  handleRemoveItem(state) {
     this.setState(({todos}) => ({
       todos: todos.filter(item => 
-        item !== s.idName
-      )
-    }))
+        { return Object.keys(item).toString() !== state.idName })
+    }));
+  }
+
+  handleClick(state) {
+    let updatedTask = { [state.idName]: state.completed }
+    this.setState(({todos}) => ({
+       todos: [...todos, updatedTask]
+    })); 
+  }
+
+  handleEditItem(state) {
+    let updatedTask = { [state.idName]: state.completed }
+    this.setState(({todos}) => ({
+       todos: [...todos, updatedTask]
+    })); 
   }
 
   render() {
@@ -40,7 +55,7 @@ class App extends Component {
         </div>
         <AddItem addItem={this.handleAddItem} />
         <div className="list-container">
-          <List removeItem={this.handleRemoveItem} tasks={this.state.todos} />
+          <List removeItem={this.handleRemoveItem} click={this.handleClick} editItem={this.handleEditItem} tasks={this.state.todos} todosLength={this.state.todos.length}/>
         </div>
         <div id="footer">
           <footer>

@@ -2,6 +2,7 @@
 
 #list-container {
     margin: 0 auto 1.25rem auto;
+    text-align: center;
     width: 19rem;
     overflow-y: auto;
 }
@@ -13,4 +14,8 @@
 
 .list-item {
     list-style: none;
+}
+
+#number-of-tasks {
+    margin-bottom: 1.25rem;
 }

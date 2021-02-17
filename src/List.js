@@ -15,7 +15,7 @@ class List extends Component {
         } else {
             taskOrTasks = "tasks remaining"
         }
-        let tasks = this.props.tasks;
+        let todos = this.props.todos;
         let removeItem = this.props.removeItem;
         let click = this.props.click;
         let editItem = this.props.editItem;
@@ -23,7 +23,7 @@ class List extends Component {
             <div id="list-container">
                 <h6 id="number-of-tasks">You have {length} {taskOrTasks} </h6>
                 <ul id="todo-list">
-                    {tasks.map((task) => (<li className="list-item" key={uuidv4()}> <ListItem key={uuidv4()} removeItem={removeItem.bind(this)} click={click.bind(this)} editItem={editItem.bind(this)} task={task} /> </li>))}
+                    {todos.map((task) => (<li className="list-item" key={uuidv4()}> <ListItem removeItem={removeItem.bind(this)}  editItem={editItem.bind(this)} task={task} /> </li>))} {/* click={click.bind(this)} */}
                 </ul>
             </div>
         )

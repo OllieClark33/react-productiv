@@ -10,11 +10,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [] // DATA should change to: todos: [{task: Take Shower, completed: false, id: XXX }]
+      todos: [] // DATA structure = todos: [{name: Take Shower, completed: false, id: XXX}, {...}, {...}]
     }
     this.handleAddItem = this.handleAddItem.bind(this);
     this.handleRemoveItem = this.handleRemoveItem.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
     this.handleEditItem = this.handleEditItem.bind(this)
   }
 
@@ -24,25 +24,34 @@ class App extends Component {
     )); 
   }
 
-  handleRemoveItem(state) {
-    this.setState(({todos}) => ({
-      todos: todos.filter(item => 
-        { return Object.keys(item).toString() !== state.idName })
-    }));
+  handleRemoveItem(id) {
+    let todos = this.state.todos;
+    let updatedTodos = todos.filter(task => task.id !== id);
+    this.setState({
+      todos: updatedTodos
+    })
   }
 
-  handleClick(state) {
-    let updatedTask = { [state.idName]: state.completed }
-    this.setState(({todos}) => ({
-       todos: [...todos, updatedTask]
-    })); 
-  }
+  // handleClick(state) { // NOT ATTACHED
+  //   let updatedTask = { [state.idName]: state.completed }
+  //   this.setState(({todos}) => ({
+  //      todos: [...todos, updatedTask]
+  //   })); 
+  // }
 
   handleEditItem(state) {
-    let updatedTask = { [state.idName]: state.completed }
-    this.setState(({todos}) => ({
-       todos: [...todos, updatedTask]
-    })); 
+    let id = state.id;
+    let newName = state.name;
+    let todos = this.state.todos
+    let updatedTodos = todos.map(task => {
+      if (task.id === id) {
+        task.name = newName;
+      }
+      return task;
+    })
+    this.setState({
+      todos: updatedTodos
+    })
   }
 
   render() {
@@ -55,7 +64,7 @@ class App extends Component {
         </div>
         <AddItem addItem={this.handleAddItem} />
         <div className="list-container">
-          <List removeItem={this.handleRemoveItem} click={this.handleClick} editItem={this.handleEditItem} tasks={this.state.todos} todosLength={this.state.todos.length}/>
+          <List removeItem={this.handleRemoveItem} click={this.handleClick} editItem={this.handleEditItem} todos={this.state.todos} todosLength={this.state.todos.length}/>
         </div>
         <div id="footer">
           <footer>

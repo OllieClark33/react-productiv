@@ -5,40 +5,50 @@ class ListItem extends Component {
 
     constructor(props) {
         super(props);
-        let taskName;
-        let completed;
+        let taskName, completed, id;
         for (const [key, value] of Object.entries(this.props.task)) {
-            taskName = key;
-            completed = value;
+            if (key === "name") {
+                taskName = value;
+            } else if (key === "completed") {
+                completed = value;
+            } else {
+                id = value;
+            }
         }
         this.state = {
             completed: completed,
+            readyToRemove: false,
             editing: false,
-            idName: taskName
+            name: taskName,
+            id: id
         }
-        this.click = this.click.bind(this);
-        this.remove = this.remove.bind(this);
-        this.edit = this.edit.bind(this);
+        // this.handleClick = this.handleClick.bind(this);
+        this.removeCheck = this.removeCheck.bind(this);
+        this.editCheck = this.editCheck.bind(this);
         this.editRef = React.createRef();
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
     }
 
-    click() {
-        this.setState({ completed: !this.state.completed }, function() {
-            alert("Currently under construction, will not be working correctly - please wear hard hats");
-            this.props.click(this.state);
-        })
+    // handleClick() {
+    //     this.setState({ completed: !this.state.completed }, function() {
+    //         this.props.handleClick(this.state);
+    //     })
+    // }
+
+    removeCheck() {
+        this.setState({
+            readyToRemove: !this.state.readyToRemove
+        });
     }
 
-    remove() {
-        this.props.removeItem(this.state);
+    handleRemove() {
+        this.props.removeItem(this.state.id)
     }
 
-    edit() {
+    editCheck() {
         this.setState({
             editing: !this.state.editing
-        }, function() {
-            alert("Currently under construction, will not be working correctly - please wear hard hats");
         });
     }
 
@@ -46,47 +56,66 @@ class ListItem extends Component {
         e.preventDefault();
         this.setState({
             editing: false,
-            idName: this.editRef.current.value
+            name: this.editRef.current.value
         }, function() {
-            this.props.editItem(this.state)
-        })
+            this.props.editItem(this.state);
+        });
     }
 
-
     render() {
-        let taskObj = this.props.task
-        let task = Object.keys(taskObj).toString();
-        if (this.state.editing) {
+        let readyToRemove = this.state.readyToRemove;
+        let taskName = this.state.name;
+        let editing = this.state.editing;
+
+        if (editing) {
             return(
-                <div className="listitem-container">
-                    <div className="editor-container">
-                        <form className="task-updater" onSubmit={this.handleSubmit}>
-                            <input type="text" defaultValue={this.state.idName} ref={this.editRef} />
-                        </form>
+                <div className="edititem-container default-container">
+                    <form className="task-updater-form" onSubmit={this.handleSubmit}>
+                        <div className="input-container">
+                                <input type="text" id="edit-input" defaultValue={this.state.name} ref={this.editRef} />
+                        </div>
+                        <div className="button-container">
+                            <button className="confirm-button" type="submit">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button className="return-button" onClick={this.editCheck}> 
+                                <i class="fas fa-times"></i> 
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            )
+        } else if (readyToRemove) {
+            return (
+                <div className="removeitem-container default-container">
+                    <div className="removal-container">
+                        <span className="removal-check">
+                            <strong>Are you sure?</strong>
+                        </span>
                     </div>
                     <div className="button-container">
-                        <button className="edit-button" onClick={this.edit}>
-                            <i class="fas fa-edit"></i> 
+                        <button className="confirm-button" onClick={this.handleRemove}>
+                            <i class="fas fa-check"></i>
                         </button>
-                        <button className="remove-button" onClick={this.remove}>
-                            <i class="fas fa-trash-alt"></i>  
+                        <button className="return-button" onClick={this.removeCheck}> 
+                            <i class="fas fa-times"></i> 
                         </button>
                     </div>
                 </div>
             )
         }
         return(
-            <div className="listitem-container">
-                <div className="task-name-container" onClick={this.click}>
+            <div className="listitem-container default-container">
+                <div className="task-name-container" > {/* onClick={this.handleClick} */}
                     <span className="task-name">
-                        {task}
+                        {taskName}
                     </span>
                 </div>
                 <div className="button-container">
-                    <button className="edit-button" onClick={this.edit}>
+                    <button className="edit-button" onClick={this.editCheck}>
                         <i class="fas fa-edit"></i> 
                     </button>
-                    <button className="remove-button" onClick={this.remove}>
+                    <button className="remove-button" onClick={this.removeCheck}>
                         <i class="fas fa-trash-alt"></i>  
                     </button>
                 </div>

@@ -1,40 +1,76 @@
-/* ListItem.js */
-/* .change-color {
-    text-decoration: line-through;
-    background-color: #28a745!important;
-} */
+
+/* CONTAINERS  */
+.default-container {
+    width: 19rem;
+    padding: 0.625rem;
+    margin-bottom: 0.625rem;
+    color: white;
+    border-radius: 8px;
+    overflow-x: auto;
+}
 
 .listitem-container {
     display: flex;
     justify-content: space-between;
-    width: 19rem;
-    padding: 0.625rem;
     background-color: #dc3545;
-    margin-bottom: 0.625rem;
-    color: white;
-    border-radius: 8px;
 }
 
-.task-name-container {
+.edititem-container {
+    background-color: #ffc107
+}
+
+.removeitem-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #343a40;
+}
+
+/* TEXT  */
+.task-name-container, .removal-container {
     flex: 6;
     text-align: left;
 }
 
-.task-name {
+.task-name, .removal-check {
     padding-left: 0.2rem;
     font-size: 1rem;
     font-weight: 500;
     overflow-x: auto;
 }
 
-.remove-button {
+/* BUTTONS  */
+.remove-button, .edit-button, .confirm-button, .return-button {
     color: white;
     border: none;
     background-color: transparent;
 }
 
-.edit-button {
-    color: white;
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* EDIT */
+.task-updater-form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#edit-input { 
+    width: 95%;
+    height: 90%;
     border: none;
-    background-color: transparent;
+    border-radius: 5px;
+    padding: 0 0 0 0.625rem;
+    overflow-x: auto;
+}
+
+#edit-input:focus {
+    outline: none;
 }

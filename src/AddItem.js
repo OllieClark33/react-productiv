@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './AddItem.css';
+import { v4 as uuidv4 } from 'uuid';
 import Button from 'react-bootstrap/Button'
 
 class AddItem extends Component {
@@ -7,7 +8,7 @@ class AddItem extends Component {
     constructor(props) {
         super(props)
         this.state = { 
-            newTask: {} 
+            newTask: {}
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.inputRef = React.createRef();
@@ -16,9 +17,14 @@ class AddItem extends Component {
     handleSubmit(e) {
         let wsRegex = new RegExp(/\S+/, "g")
         let input = this.inputRef.current.value
+        let newId = uuidv4(); // NEW
         e.preventDefault();
         if (wsRegex.test(input)) {
-            this.setState({ newTask: { [input]: false } }, function() {
+            this.setState({ newTask: { // NEW
+                name: input,
+                completed: false,
+                id: newId
+             } }, function() {
                 this.inputRef.current.value = "";
                 this.props.addItem(this.state.newTask)
             })

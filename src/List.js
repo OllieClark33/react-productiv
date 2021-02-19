@@ -17,7 +17,7 @@ class List extends Component {
         }
         let todos = this.props.todos;
         let removeItem = this.props.removeItem;
-        let click = this.props.click;
+        // let click = this.props.click;
         let editItem = this.props.editItem;
         return (
             <div id="list-container">
